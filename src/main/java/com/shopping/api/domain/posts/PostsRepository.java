@@ -12,3 +12,4 @@ public interface PostsRepository extends JpaRepository<Posts, Long> {
     List<Posts> findAllDesc();
 
 }
+//postsDB접근인터페이스(sql자동 생성 인터페이스)

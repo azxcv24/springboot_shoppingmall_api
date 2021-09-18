@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.1.RELEASE'
+		springBootVersion = '2.1.7.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -103,4 +103,8 @@ dependencies {
 	compile('org.apache.kafka:kafka-streams:1.0.1')
 	compile('org.springframework.kafka:spring-kafka')
 	*/
+
+
+
+
 }
