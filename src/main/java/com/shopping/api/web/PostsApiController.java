@@ -1,6 +1,7 @@
 package com.shopping.api.web;
 
 import com.shopping.api.service.PostsService;
+import com.shopping.api.web.dto.PostsListResponeseDto;
 import com.shopping.api.web.dto.PostsResponseDto;
 import com.shopping.api.web.dto.PostsSaveRequestDto;
 import com.shopping.api.web.dto.PostsUpdateRequestDto;
@@ -10,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -36,14 +37,32 @@ public class PostsApiController {
     }
 
     /*
-    @GetMapping("/api/v1/posts/") //목록생성표시
-    public Long
-     */
+    @GetMapping("/api/v1/posts/search") //검색
+    public PostsResponseDto findBy(@RequestParam(value="searchstr",required = true) String searchstr,
+                                    @RequestParam( value = "category",required = false) String category){
+        return postsService.findById(id);
+    }*/
+
+    @GetMapping("/api/v1/posts/listall") //목록전체생성표시
+    public List<PostsListResponeseDto> findAllDesc()
+    {
+        return postsService.findAllDesc();
+    }
+
+    @GetMapping("/api/v1/posts/list") //목록생성표시
+    public List<PostsListResponeseDto> getOrderPostsCase(@RequestParam( value = "category",required = false) String category,
+                                                         @RequestParam( value = "author",required = false) String author,
+                                                         @RequestParam( value = "shipping",required = false) String shipping/*,
+                                                        @RequestParam( value = "page",required = false) String page)*/)
+    {
+        return postsService.getOrderPostsCase(category,author,shipping);
+    }
 
 
 
     @DeleteMapping("/api/v1/posts/{id}") //삭제
     public Long delete(@PathVariable Long id){
+
         postsService.delete(id);
         return id;
     }

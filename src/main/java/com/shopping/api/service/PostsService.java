@@ -47,7 +47,12 @@ public class PostsService {
     @Transactional
     public List<PostsListResponeseDto> findAllDesc(){
         return postsRepository.findAllDesc().stream().map(PostsListResponeseDto::new).collect(Collectors.toList());
+    }
 
+    //상품조건별리스트 category,author,shipping
+    @Transactional
+    public List<PostsListResponeseDto> getOrderPostsCase(String author, String category, String shipping){
+        return postsRepository.getOrderPostsCase(author,category,shipping).stream().map(PostsListResponeseDto::new).collect(Collectors.toList());
     }
 
 
@@ -59,6 +64,8 @@ public class PostsService {
         postsRepository.delete(posts);
     }
 
+
+    //상품전체 삭제
     @Transactional
     public void deleteAll(){
         postsRepository.deleteAll();

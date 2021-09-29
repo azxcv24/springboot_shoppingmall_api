@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
     //index로는 로그인 및 기타 연결 맵핑으로 써먹자
-/*
+
     private final PostsService postsService;
     private final HttpSession httpSession;
 
@@ -22,15 +22,21 @@ public class IndexController {
 
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user)
+    public String index(Model model/*, @LoginUser SessionUser */)
     {
         model.addAttribute("posts", postsService.findAllDesc());
         //SessionUser user = (SessionUser)httpSession.getAttribute("user");
-
+        /*
         if(user!=null)
             model.addAttribute("userName",user.getName());
-        return "index";
+
+         */
+        return "index.html";
     }
+
+
+
+/*
 
     @GetMapping("/posts/save")
     public String postsSave(){
