@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Posts {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //키
     private long id;
 
     @Column(length=500, nullable=false)
@@ -72,4 +72,4 @@ public class Posts {
     }
     
 }
-//테이블 클래스
+//테이블 Entity 클래스

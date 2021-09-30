@@ -7,6 +7,7 @@ import com.shopping.api.web.dto.PostsResponseDto;
 import com.shopping.api.web.dto.PostsSaveRequestDto;
 import com.shopping.api.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -55,8 +56,8 @@ public class PostsService {
 
     //상품조건별리스트 category,author,shipping
     @Transactional
-    public List<PostsListResponeseDto> findAllPostsWithPagination(String author, String category, String shipping, Pageable pageable){
-        return postsRepository.findAllPostsWithPagination(author, category, shipping, pageable).stream().map(PostsListResponeseDto::new).collect(Collectors.toList());
+    public Page<PostsListResponeseDto> findAllPostsWithPagination(String author, String category, String shipping, Pageable pageable){
+        return postsRepository.findAllPostsWithPagination(author, category, shipping, pageable).map(PostsListResponeseDto::new);
     }
 
 
