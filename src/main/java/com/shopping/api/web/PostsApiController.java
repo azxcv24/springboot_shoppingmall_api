@@ -6,14 +6,13 @@ import com.shopping.api.web.dto.PostsResponseDto;
 import com.shopping.api.web.dto.PostsSaveRequestDto;
 import com.shopping.api.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
-
+@CrossOrigin(origins = "*", allowedHeaders = "*") //CORS허용
 @RequiredArgsConstructor
 @RestController
 public class PostsApiController {
@@ -37,30 +36,30 @@ public class PostsApiController {
     }
 
     /*
-    @GetMapping("/api/v1/posts/search") //검색
+    @GetMapping("/api/v1/posts/search") //검색 아래 하나로 다 할수 있을듯
     public List<PostsListResponeseDto> findByTitle(@RequestParam(value="title",required = true) String title,
-                                    @RequestParam( value = "category",required = false) String category){
+                                    @RequestParam( value = "category",required = false) String category
+                                    @RequestParam( value = "keyword") String keyword){
         return postsService.findByTitle(id);
     }*/
 
-    @GetMapping("/api/v1/posts/listall") //목록전체생성표시
+    @GetMapping("/api/v1/posts/listall") //TODO 목록전체생성표시(아래껄로 추후 통합사용)
     public List<PostsListResponeseDto> findAllDesc()
     {
         return postsService.findAllDesc();
     }
 
-    @GetMapping("/api/v1/posts/list") //목록생성표시
-    public List<PostsListResponeseDto> getOrderPostsCase(@RequestParam( value = "author",required = false) String author,
-                                                         @RequestParam( value = "category",required = false) String category,
-                                                         @RequestParam( value = "shipping",required = false) String shipping/*,
-                                                        @RequestParam( value = "page",required = false) int page*/)
+    @GetMapping("/api/v1/posts/list") //TODO 목록생성표시(페이징 기능에 최대 페이지,페이지사이즈 변수 기능 추가하기)+타이틀 검색 추가
+    public List<PostsListResponeseDto> findAllPostsWithPagination(@RequestParam( value = "author",required = false) String author,
+                                                                  @RequestParam( value = "category",required = false) String category,
+                                                                  @RequestParam( value = "shipping",required = false) String shipping,
+                                                                  @PageableDefault(size = 20, sort = "id") Pageable pageable)
     {
-
-        return postsService.getOrderPostsCase(author,category,shipping);
+        return postsService.findAllPostsWithPagination(author, category, shipping, pageable);
     }
 
 
-
+    //TODO 작성자만 삭제 가능하게
     @DeleteMapping("/api/v1/posts/{id}") //삭제
     public Long delete(@PathVariable Long id){
 

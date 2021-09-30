@@ -7,6 +7,7 @@ import com.shopping.api.web.dto.PostsResponseDto;
 import com.shopping.api.web.dto.PostsSaveRequestDto;
 import com.shopping.api.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -45,7 +46,7 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
-    //findAllDesc,getOrderPostsCase 두개는 직접 작성
+    //findAllDesc,findAllPostsWithPagination 두개는 직접 작성
     //상품리스트
     @Transactional
     public List<PostsListResponeseDto> findAllDesc(){
@@ -54,8 +55,8 @@ public class PostsService {
 
     //상품조건별리스트 category,author,shipping
     @Transactional
-    public List<PostsListResponeseDto> getOrderPostsCase(String author, String category, String shipping){
-        return postsRepository.getOrderPostsCase(author,category,shipping).stream().map(PostsListResponeseDto::new).collect(Collectors.toList());
+    public List<PostsListResponeseDto> findAllPostsWithPagination(String author, String category, String shipping, Pageable pageable){
+        return postsRepository.findAllPostsWithPagination(author, category, shipping, pageable).stream().map(PostsListResponeseDto::new).collect(Collectors.toList());
     }
 
 
