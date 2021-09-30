@@ -21,6 +21,5 @@ public interface PostsRepository extends JpaRepository<Posts, Long> {
                 "and p.shipping= COALESCE(:shipping, p.shipping) " +
             "ORDER BY p.id DESC")
     Page<Posts> findAllPostsWithPagination(String author, String category, String shipping, Pageable pageable);
-    //어쨰서 이게 DTO로???
 }
 //postsDB접근인터페이스(sql자동 생성 인터페이스)

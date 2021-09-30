@@ -44,13 +44,13 @@ public class PostsApiController {
         return postsService.findByTitle(id);
     }*/
 
-    @GetMapping("/api/v1/posts/listall") //TODO 목록전체생성표시(아래껄로 추후 통합사용)
+    @GetMapping("/api/v1/posts/listall") //TODO 목록전체생성표시
     public List<PostsListResponeseDto> findAllDesc()
     {
         return postsService.findAllDesc();
     }
 
-    @GetMapping("/api/v1/posts/list") //TODO 목록생성표시(페이징 기능에 최대 페이지,페이지사이즈 변수 기능 추가하기)+타이틀 검색 추가
+    @GetMapping("/api/v1/posts/list") //TODO 목록생성표시  타이틀 검색 추가하기
     public Page<PostsListResponeseDto> findAllPostsWithPagination(@RequestParam( value = "author",required = false) String author,
                                                                   @RequestParam( value = "category",required = false) String category,
                                                                   @RequestParam( value = "shipping",required = false) String shipping,
