@@ -38,9 +38,9 @@ public class PostsApiController {
 
     /*
     @GetMapping("/api/v1/posts/search") //검색
-    public PostsResponseDto findBy(@RequestParam(value="searchstr",required = true) String searchstr,
+    public List<PostsListResponeseDto> findByTitle(@RequestParam(value="title",required = true) String title,
                                     @RequestParam( value = "category",required = false) String category){
-        return postsService.findById(id);
+        return postsService.findByTitle(id);
     }*/
 
     @GetMapping("/api/v1/posts/listall") //목록전체생성표시
@@ -50,12 +50,13 @@ public class PostsApiController {
     }
 
     @GetMapping("/api/v1/posts/list") //목록생성표시
-    public List<PostsListResponeseDto> getOrderPostsCase(@RequestParam( value = "category",required = false) String category,
-                                                         @RequestParam( value = "author",required = false) String author,
+    public List<PostsListResponeseDto> getOrderPostsCase(@RequestParam( value = "author",required = false) String author,
+                                                         @RequestParam( value = "category",required = false) String category,
                                                          @RequestParam( value = "shipping",required = false) String shipping/*,
-                                                        @RequestParam( value = "page",required = false) String page)*/)
+                                                        @RequestParam( value = "page",required = false) int page*/)
     {
-        return postsService.getOrderPostsCase(category,author,shipping);
+
+        return postsService.getOrderPostsCase(author,category,shipping);
     }
 
 

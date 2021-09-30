@@ -19,6 +19,8 @@ public class PostsService {
 
     private final PostsRepository postsRepository;
 
+
+
     @Transactional
     public Long save(PostsSaveRequestDto requestDto){
 
@@ -43,6 +45,7 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
+    //findAllDesc,getOrderPostsCase 두개는 직접 작성
     //상품리스트
     @Transactional
     public List<PostsListResponeseDto> findAllDesc(){
