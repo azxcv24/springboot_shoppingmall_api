@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.1.7.RELEASE'
+		springBootVersion = '2.1.9.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -58,9 +58,13 @@ dependencies {
 	compile('org.springframework.data:spring-data-rest-hal-browser')
 	testCompile('io.projectreactor:reactor-test')
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+	compile('org.springframework.boot:spring-boot-starter-mustache')
 	*/
-    compile('org.springframework.boot:spring-boot-starter-mustache')
-	
+	compile("org.springframework.boot:spring-boot-starter-security")
+	//compile("org.springframework.boot:spring-boot-starter-oauth2-client")
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity5')
+
 	/* Core
 	compile('org.springframework.boot:spring-boot-starter-aop')
 	compile('org.springframework.boot:spring-boot-starter-cache')
@@ -72,7 +76,9 @@ dependencies {
 	compileOnly('org.springframework.boot:spring-boot-configuration-processor')
 	testCompile('org.springframework.security:spring-security-test')
 	*/
-	
+	compile('org.springframework.session:spring-session-jdbc')
+
+
 	/* SQL 
 	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')

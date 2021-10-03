@@ -1,4 +1,4 @@
-package com.shopping.api.web.dto;
+package com.shopping.api.web.dto.posts;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,10 +1,10 @@
 package com.shopping.api.web;
 
 import com.shopping.api.service.PostsService;
-import com.shopping.api.web.dto.PostsListResponeseDto;
-import com.shopping.api.web.dto.PostsResponseDto;
-import com.shopping.api.web.dto.PostsSaveRequestDto;
-import com.shopping.api.web.dto.PostsUpdateRequestDto;
+import com.shopping.api.web.dto.posts.PostsListResponeseDto;
+import com.shopping.api.web.dto.posts.PostsResponseDto;
+import com.shopping.api.web.dto.posts.PostsSaveRequestDto;
+import com.shopping.api.web.dto.posts.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,13 +36,13 @@ public class PostsApiController {
         return postsService.findById(id);
     }
 
-    /*
-    @GetMapping("/api/v1/posts/search") //검색 아래 하나로 다 할수 있을듯
-    public List<PostsListResponeseDto> findByTitle(@RequestParam(value="title",required = true) String title,
-                                    @RequestParam( value = "category",required = false) String category
-                                    @RequestParam( value = "keyword") String keyword){
-        return postsService.findByTitle(id);
-    }*/
+
+    @GetMapping("/api/v1/posts/search") //검색
+    public Page<PostsListResponeseDto> findAllKeywordWithPagination(@RequestParam( value = "category",required = false) String category,
+                                                                    @RequestParam( value = "keyword") String keyword,
+                                                                    @PageableDefault(size = 20, sort = "id") Pageable pageable){
+        return postsService.findAllKeywordWithPagination(category,keyword, pageable);
+    }
 
     @GetMapping("/api/v1/posts/listall") //TODO 목록전체생성표시
     public List<PostsListResponeseDto> findAllDesc()

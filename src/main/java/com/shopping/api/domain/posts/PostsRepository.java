@@ -21,5 +21,8 @@ public interface PostsRepository extends JpaRepository<Posts, Long> {
                 "and p.shipping= COALESCE(:shipping, p.shipping) " +
             "ORDER BY p.id DESC")
     Page<Posts> findAllPostsWithPagination(String author, String category, String shipping, Pageable pageable);
+
+    @Query("SELECT p from Posts p WHERE p.title LIKE %:keyword% or p.content LIKE %:keyword% and p.category= COALESCE(:category, p.category) ORDER BY p.id DESC")
+    Page<Posts>findAllKeywordWithPagination(String category, String keyword, Pageable pageable);
 }
 //postsDB접근인터페이스(sql자동 생성 인터페이스)

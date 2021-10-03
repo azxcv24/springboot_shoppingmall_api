@@ -2,10 +2,10 @@ package com.shopping.api.service;
 
 import com.shopping.api.domain.posts.Posts;
 import com.shopping.api.domain.posts.PostsRepository;
-import com.shopping.api.web.dto.PostsListResponeseDto;
-import com.shopping.api.web.dto.PostsResponseDto;
-import com.shopping.api.web.dto.PostsSaveRequestDto;
-import com.shopping.api.web.dto.PostsUpdateRequestDto;
+import com.shopping.api.web.dto.posts.PostsListResponeseDto;
+import com.shopping.api.web.dto.posts.PostsResponseDto;
+import com.shopping.api.web.dto.posts.PostsSaveRequestDto;
+import com.shopping.api.web.dto.posts.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -54,12 +54,16 @@ public class PostsService {
         return postsRepository.findAllDesc().stream().map(PostsListResponeseDto::new).collect(Collectors.toList());
     }
 
-    //상품조건별리스트 category,author,shipping
+    //상품조건별리스트 category,author,shippin
     @Transactional
     public Page<PostsListResponeseDto> findAllPostsWithPagination(String author, String category, String shipping, Pageable pageable){
         return postsRepository.findAllPostsWithPagination(author, category, shipping, pageable).map(PostsListResponeseDto::new);
     }
-
+    //상품검색
+    @Transactional
+    public Page<PostsListResponeseDto> findAllKeywordWithPagination(String category, String keyword, Pageable pageable){
+        return postsRepository.findAllKeywordWithPagination(category, keyword, pageable).map(PostsListResponeseDto::new);
+    }
 
     //상품삭제
     @Transactional
