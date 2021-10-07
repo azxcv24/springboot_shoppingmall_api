@@ -46,13 +46,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //페이지 권한 설정
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/myinfo").hasRole("MEMBER")
+                .antMatchers("/user/myinfo").hasRole("USER")
                 .antMatchers("/**").permitAll()
                 .and() // 로그인 설정
                     .formLogin()
                     .loginPage("/user/login") //커스텀로그인 페이지사용시
                     .defaultSuccessUrl("/user/login/result") //로그은 성공후 이동 페이지
-                    .usernameParameter("memberemail") //이메일로 로그인 id로 사용
+                    .usernameParameter("email") //이메일로 로그인 id로 사용
+                    .passwordParameter("password")
                     .permitAll()
                 .and() // 로그아웃 설정
                     .logout()

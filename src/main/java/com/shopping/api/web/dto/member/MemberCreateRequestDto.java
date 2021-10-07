@@ -3,6 +3,7 @@ package com.shopping.api.web.dto.member;
 import com.shopping.api.domain.member.Member;
 import com.shopping.api.domain.member.MemberRole;
 import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 
@@ -10,18 +11,18 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MemberCreateRequestDto {
-    private String memberemail;
-    private String memberpasswd;
+public class MemberCreateRequestDto /*implements UserDetails*/ {
+    private String email;
+    private String password;
     private String membername;
+    private MemberRole role;
     private LocalDateTime createdData;
     private LocalDateTime modifiedDate;
-    private MemberRole role;
 
     @Builder
-    public MemberCreateRequestDto( String memberemail, String memberpasswd, String membername, MemberRole role){
-        this.memberemail = memberemail;
-        this.memberpasswd = memberpasswd;
+    public MemberCreateRequestDto( String email, String password, String membername, MemberRole role){
+        this.email = email;
+        this.password = password;
         this.membername = membername;
         this.role=role;
 
@@ -29,8 +30,8 @@ public class MemberCreateRequestDto {
 
     public Member toEntity(){
         return Member.builder()
-                .memberemail(memberemail)
-                .memberpasswd(memberpasswd)
+                .email(email)
+                .password(password)
                 .membername(membername)
                 .role(role)
                 .build();

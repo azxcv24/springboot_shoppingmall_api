@@ -33,7 +33,7 @@ public class MemberService implements UserDetailsService{
 
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        MemberDto.setMemberpasswd(passwordEncoder.encode(MemberDto.getMemberpasswd()));
+        MemberDto.setPassword(passwordEncoder.encode(MemberDto.getPassword()));
 
         return memberRepository.save(MemberDto.toEntity()).getId();
     }
@@ -42,7 +42,7 @@ public class MemberService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String memberemail) throws UsernameNotFoundException {
         //여기서 받은 유저 패스워드와 비교하여 로그인 인증
-        Optional<Member> userEntityWrapper = memberRepository.findByMemberemail(memberemail);
+        Optional<Member> userEntityWrapper = memberRepository.findByEmail(memberemail);
         Member userEntity = userEntityWrapper.get();
 
         List<GrantedAuthority> authorities = new ArrayList<>();
@@ -54,6 +54,6 @@ public class MemberService implements UserDetailsService{
             authorities.add(new SimpleGrantedAuthority(MemberRole.USER.getKey()));
         }
 
-        return new User(userEntity.getMemberemail(), userEntity.getMemberpasswd(), authorities);
+        return new User(userEntity.getEmail(), userEntity.getPassword(), authorities);
     }
 }

@@ -1,6 +1,7 @@
 package com.shopping.api.domain.member;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -18,10 +19,10 @@ public class Member {
 
     //회원이메일->로그인 아이디
     @Column(nullable = false, unique = true, length = 40)
-    private String memberemail;
+    private String email;
 
     @Column(nullable=false, length=100)
-    private String memberpasswd;
+    private String password;
 
     //회원이름(표시이름)
     @Column(nullable = false)
@@ -29,21 +30,22 @@ public class Member {
 
     //사용자권한(MemberRole에서 선언)
     @Enumerated(EnumType.STRING)
+    //@ColumnDefault("USER") //기본 USER권한 작동안됨;;;
     private MemberRole role;
 
 
 
     @Builder
-    public Member(String memberemail, String memberpasswd, String membername, MemberRole role){
-        this.memberemail= memberemail;
-        this.memberpasswd=memberpasswd;
+    public Member(String email, String password, String membername,MemberRole role){
+        this.email= email;
+        this.password=password;
         this.membername=membername;
         this.role=role;
     }
 
-    public Member update(String memberemail, String memberpasswd, String membername){
-        this.memberemail= memberemail;
-        this.memberpasswd=memberpasswd;
+    public Member update(String email, String password, String membername){
+        this.email= email;
+        this.password=password;
         this.membername=membername;
         return this;
     }

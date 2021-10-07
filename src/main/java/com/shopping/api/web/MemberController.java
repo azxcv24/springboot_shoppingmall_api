@@ -48,6 +48,7 @@ public class MemberController {
         return "/logout";
     }
 
+
     @GetMapping("/user/denied")
     public String dispeDenied(){
         return "/denied";
