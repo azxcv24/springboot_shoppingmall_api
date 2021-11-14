@@ -1,4 +1,4 @@
-package com.shopping.api.web;
+package com.shopping.api.web.controller;
 
 import com.shopping.api.service.PostsService;
 import com.shopping.api.web.dto.posts.PostsListResponeseDto;
@@ -44,13 +44,13 @@ public class PostsApiController {
         return postsService.findAllKeywordWithPagination(category,keyword, pageable);
     }
 
-    @GetMapping("/api/v1/posts/listall") //TODO 목록전체생성표시
+    @GetMapping("/api/v1/posts/listall") //목록전체생성표시
     public List<PostsListResponeseDto> findAllDesc()
     {
         return postsService.findAllDesc();
     }
 
-    @GetMapping("/api/v1/posts/list") //TODO 목록생성표시  타이틀 검색 추가하기
+    @GetMapping("/api/v1/posts/list") //
     public Page<PostsListResponeseDto> findAllPostsWithPagination(@RequestParam( value = "author",required = false) String author,
                                                                   @RequestParam( value = "category",required = false) String category,
                                                                   @RequestParam( value = "shipping",required = false) String shipping,

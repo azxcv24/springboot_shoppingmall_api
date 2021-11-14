@@ -15,6 +15,7 @@ public class Member {
     //회원번호
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     //회원이메일->로그인 아이디
@@ -30,7 +31,7 @@ public class Member {
 
     //사용자권한(MemberRole에서 선언)
     @Enumerated(EnumType.STRING)
-    //@ColumnDefault("USER") //기본 USER권한 작동안됨;;;
+    //@ColumnDefault("USER") //기본 USER권한 작동안됨
     private MemberRole role;
 
 

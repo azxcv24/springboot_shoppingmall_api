@@ -11,18 +11,18 @@ public class PostsUpdateRequestDto {
     private String title;
     private String content;
     private String category;
-    private long price0;
-    private long price1;
-    private long discount;
+    private Long price0;
+    private Long price1;
+    private Long discount;
     private String shipping;
-    private long shipping_price;
+    private Long shipping_price;
     private String content_img;
     private String preview_img;
 
 
     @Builder
-    public PostsUpdateRequestDto(String title, String content, String category, long price1, long price0, long discount,
-                                 long shipping_price, String shipping, String content_img, String preview_img){
+    public PostsUpdateRequestDto(String title, String content, String category, Long price1, Long price0, Long discount,
+                                 Long shipping_price, String shipping, String content_img, String preview_img){
         this.title = title;
         this.content = content;
         this.category = category;

@@ -1,4 +1,4 @@
-package com.shopping.api.web;
+package com.shopping.api.web.controller;
 
 
 import com.shopping.api.service.MemberService;

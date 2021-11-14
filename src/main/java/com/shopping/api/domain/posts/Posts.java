@@ -13,7 +13,7 @@ public class Posts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //키
-    private long id;
+    private Long id;
 
     @Column(length=500, nullable=false)
     private String title;
@@ -21,30 +21,32 @@ public class Posts {
     @Column(columnDefinition="text", nullable=false)
     private String content;
 
+    //@ManyToOne
+    //@JoinColumn(name = "membername")
     private String author;
 
     @Column(nullable=false)
     private String category;
 
-    private long price0;
+    private Long price0;
 
     @Column(nullable=false)
-    private long price1;
+    private Long price1;
 
-    private long discount;
+    private Long discount;
 
     @Column(length=200, nullable=false)
     private String shipping;
 
     @Column(nullable=false)
-    private long shipping_price;
+    private Long shipping_price;
 
     private String content_img;
 
     private String preview_img;
 
     @Builder
-    public Posts(String title, String content, String author, String category,long price0, long price1, long discount, String shipping, long shipping_price, String content_img, String preview_img){
+    public Posts(String title, String content, String author, String category,Long price0, Long price1, Long discount, String shipping, Long shipping_price, String content_img, String preview_img){
         this.title = title;
         this.content = content;
         this.author = author;
@@ -58,7 +60,7 @@ public class Posts {
         this.preview_img = preview_img;
     }
 
-    public void update(String title, String content, String category, long price0, long price1, long discount, String shipping, long shipping_price, String content_img, String preview_img){
+    public void update(String title, String content, String category, Long price0, Long price1, Long discount, String shipping, Long shipping_price, String content_img, String preview_img){
         this.title = title;
         this.content = content;
         this.category = category;

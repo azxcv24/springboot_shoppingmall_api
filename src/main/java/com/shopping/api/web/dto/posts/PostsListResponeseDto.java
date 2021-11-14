@@ -8,15 +8,15 @@ import lombok.Getter;
 @Getter
 public class PostsListResponeseDto {
 
-    private long id;
+    private Long id;
     private String title;
     private String author;
     private String category;
-    private long price0;
-    private long price1;
-    private long discount;
+    private Long price0;
+    private Long price1;
+    private Long discount;
     private String shipping;
-    private long shipping_price;
+    private Long shipping_price;
     private String content_img;
     private String preview_img;
 
