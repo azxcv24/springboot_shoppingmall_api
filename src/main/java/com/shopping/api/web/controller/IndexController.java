@@ -19,7 +19,7 @@ public class IndexController {
     //메인
     @GetMapping("/")
     public String index() {
-        return "/index";
+        return "index";
     }
 
 

@@ -25,7 +25,7 @@ public class MemberController {
 
     @GetMapping("/user/signup")
     public String dispSignup() {
-        return "/signup";
+        return "signup";
     }
 
     @PostMapping("/user/signup")
@@ -35,32 +35,32 @@ public class MemberController {
     }
     @GetMapping("/user/login")
     public String dispLogin(){
-        return "/login";
+        return "login";
     }
 
     @GetMapping("/user/login/result")
     public String dispLoginResult(){
-        return "/loginSucess";
+        return "loginSucess";
     }
 
     @GetMapping("/user/logout/result")
     public String dispLogout(){
-        return "/logout";
+        return "logout";
     }
 
 
     @GetMapping("/user/denied")
     public String dispeDenied(){
-        return "/denied";
+        return "denied";
     }
 
     @GetMapping("/user/info")
     public String dispMyInfo(){
-        return "/myinfo";
+        return "myinfo";
     }
     @GetMapping("/admin")
     public String dispAdmin(){
-        return "/admin";
+        return "admin";
     }
 
 

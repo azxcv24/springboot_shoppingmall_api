@@ -99,3 +99,5 @@ fabric.properties
 /.idea/
 /.gradle/
 /build/
+!/src/main/resources/application-real-db.properties
+/build/
