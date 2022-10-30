@@ -34,6 +34,7 @@ public class PostsService {
     public Long Update(Long id, PostsUpdateRequestDto requestDto){
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("헤당 상품이 없습니다 id = " + id));
+
         posts.update(requestDto.getTitle(),requestDto.getContent(), requestDto.getCategory(), requestDto.getPrice0(), requestDto.getPrice1(),
                 requestDto.getDiscount(), requestDto.getShipping(), requestDto.getShipping_price(), requestDto.getContent_img(), requestDto.getPreview_img());
         return id;
@@ -44,6 +45,7 @@ public class PostsService {
     public PostsResponseDto findById(Long id){
         Posts entity = postsRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("해당 상품이 없습니다 id = " + id));
+
         return new PostsResponseDto(entity);
     }
 
